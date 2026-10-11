@@ -4,6 +4,7 @@ Competition 15–21 Nov 2026 at KMITL Chumphon. Team of 5 from one university; p
 Brief: the `*.jpg` files in this folder (local only, gitignored — ask the team lead) (poster, pain points, tech gaps, system diagram, equipment rules).
 Everything here is a provisional PoC — designs may change; keep pieces small and swappable.
 No purchases (use existing gear only; no real coffee beans before the event → vision trains on public datasets). GitHub is public for teammates to read; no collaborators yet.
+Confirmed: AI coding assistants/cloud LLMs ARE allowed during the event; organizers provide the vision camera (model unknown); venue has internet (may be slow); a bean dataset and/or real beans will likely be provided on site.
 No contact with organizers before the event: unknowns are handled as assumptions + fallbacks in research/00-MASTER-PLAN.md §6, confirmed on day 1.
 
 ## User
