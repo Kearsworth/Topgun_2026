@@ -1,0 +1,4 @@
+{"v": 1, "node_id": "pi5-01", "batch_id": "CRB-2026-001", "ts": 1763190030, "image_id": "a1b2c3d4e5f6",
+ "bean_count": 152, "size_mm": {"mean": 8.4, "std": 0.6, "min": 6.1, "max": 10.2},
+ "class_counts": {"normal": 146, "black": 2, "broken": 3, "sour": 1},
+ "defect_rate_pct": 3.95, "low_confidence_count": 4, "model": "yolo11n-cls-v0", "proc_ms": 850}

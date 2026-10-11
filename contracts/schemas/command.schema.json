@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "command",
+  "title": "Command to a node",
+  "description": "Sent by the service on topgun/<team>/<esp32|vision>/<node_id>/cmd. All fields optional; a node ignores fields it does not understand.",
+  "type": "object",
+  "required": ["v"],
+  "properties": {
+    "v": {"const": 1},
+    "action": {"enum": ["set", "capture", "reboot"], "description": "Default 'set'. 'capture' asks the vision node to analyse a tray now."},
+    "batch_id": {"type": "string", "description": "Switch the node to this batch."},
+    "interval_s": {"type": "number", "exclusiveMinimum": 0},
+    "outputs": {
+      "type": "object",
+      "description": "Actuator name -> level 0-100 (PWM duty %), e.g. fan_pct, led_pct, buzzer_pct.",
+      "additionalProperties": {"type": "number", "minimum": 0, "maximum": 100}
+    }
+  },
+  "additionalProperties": false
+}

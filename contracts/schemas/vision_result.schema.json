@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "vision_result",
+  "title": "Pi 5 tray analysis result",
+  "description": "Published on topgun/<team>/vision/<node_id>/result, one message per analysed tray image.",
+  "type": "object",
+  "required": ["v", "node_id", "image_id", "bean_count", "class_counts", "defect_rate_pct"],
+  "properties": {
+    "v": {"const": 1},
+    "node_id": {"type": "string", "minLength": 1},
+    "batch_id": {"type": "string"},
+    "ts": {"type": "number"},
+    "image_id": {"type": "string"},
+    "bean_count": {"type": "integer", "minimum": 0},
+    "size_mm": {
+      "type": "object",
+      "required": ["mean"],
+      "properties": {
+        "mean": {"type": "number", "minimum": 0},
+        "std": {"type": "number", "minimum": 0},
+        "min": {"type": "number", "minimum": 0},
+        "max": {"type": "number", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "class_counts": {
+      "type": "object",
+      "description": "Class name -> count. 'normal' = non-defective; every other key counts as a defect.",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "defect_rate_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "low_confidence_count": {"type": "integer", "minimum": 0, "description": "Beans the model was unsure about (human review)."},
+    "beans": {
+      "type": "array",
+      "description": "Optional per-bean detail (can be large; omit for normal operation).",
+      "items": {
+        "type": "object",
+        "required": ["id", "cls"],
+        "properties": {
+          "id": {"type": "integer"},
+          "x": {"type": "number"},
+          "y": {"type": "number"},
+          "length_mm": {"type": "number"},
+          "width_mm": {"type": "number"},
+          "cls": {"type": "string"},
+          "conf": {"type": "number", "minimum": 0, "maximum": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "model": {"type": "string"},
+    "proc_ms": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}

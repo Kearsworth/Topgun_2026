@@ -1,0 +1,3 @@
+{"v": 1, "node_id": "esp32-01", "batch_id": "CRB-2026-001", "ts": 1763190000, "seq": 42,
+ "readings": {"bean_moisture_pct": 12.4, "air_temp_c": 28.5, "air_rh_pct": 78, "pile_temp_c": 30.1, "weight_kg": 5.71, "rain": false},
+ "raw": {"adc_moisture": 2540}}

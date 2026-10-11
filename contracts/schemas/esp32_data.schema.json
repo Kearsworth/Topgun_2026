@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "esp32_data",
+  "title": "ESP32 sensor readings",
+  "description": "Published on topgun/<team>/esp32/<node_id>/data. `readings` is an open map so a new sensor = a new key; keep the unit in the key suffix (_pct, _c, _kg, _lux, _ppm, _raw).",
+  "type": "object",
+  "required": ["v", "node_id", "readings"],
+  "properties": {
+    "v": {"const": 1},
+    "node_id": {"type": "string", "minLength": 1},
+    "batch_id": {"type": "string"},
+    "ts": {"type": "number", "description": "Unix seconds. Optional: if the ESP32 has no NTP, the service stamps on receipt."},
+    "seq": {"type": "integer", "minimum": 0},
+    "readings": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "bean_moisture_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "air_temp_c": {"type": "number", "minimum": -20, "maximum": 80},
+        "air_rh_pct": {"type": "number", "minimum": 0, "maximum": 100},
+        "pile_temp_c": {"type": "number", "minimum": -20, "maximum": 100},
+        "weight_kg": {"type": "number", "minimum": 0},
+        "light_lux": {"type": "number", "minimum": 0},
+        "rain": {"type": "boolean"}
+      },
+      "additionalProperties": {"type": ["number", "boolean"]}
+    },
+    "raw": {
+      "type": "object",
+      "description": "Optional raw values (e.g. ADC counts) for calibration/debugging.",
+      "additionalProperties": {"type": "number"}
+    }
+  },
+  "additionalProperties": false
+}

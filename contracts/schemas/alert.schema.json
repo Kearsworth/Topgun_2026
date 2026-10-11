@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "alert",
+  "title": "Service alert",
+  "description": "Published by the service on topgun/<team>/service/alerts.",
+  "type": "object",
+  "required": ["v", "level", "code", "message"],
+  "properties": {
+    "v": {"const": 1},
+    "batch_id": {"type": "string"},
+    "ts": {"type": "number"},
+    "level": {"enum": ["info", "warning", "critical"]},
+    "code": {"type": "string", "description": "Machine-readable, e.g. MOLD_RISK, DRYING_DONE, NODE_OFFLINE."},
+    "message": {"type": "string", "description": "Human-readable (Thai OK)."},
+    "data": {"type": "object"}
+  },
+  "additionalProperties": false
+}

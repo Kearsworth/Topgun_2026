@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "node_status",
+  "title": "Node online/offline status",
+  "description": "Retained, on topgun/<team>/<esp32|vision>/<node_id>/status. The 'offline' message is registered as the MQTT Last Will, so it has no ts.",
+  "type": "object",
+  "required": ["v", "node_id", "state"],
+  "properties": {
+    "v": {"const": 1},
+    "node_id": {"type": "string", "minLength": 1},
+    "state": {"enum": ["online", "offline"]},
+    "ts": {"type": "number"},
+    "fw": {"type": "string", "description": "Firmware/software version."}
+  },
+  "additionalProperties": false
+}
