@@ -3,6 +3,7 @@
 Competition 15–21 Nov 2026 at KMITL Chumphon. Team of 5 from one university; pre-written code is allowed.
 Brief: the `*.jpg` files in this folder (local only, gitignored — ask the team lead) (poster, pain points, tech gaps, system diagram, equipment rules).
 Everything here is a provisional PoC — designs may change; keep pieces small and swappable.
+No contact with organizers before the event: unknowns are handled as assumptions + fallbacks in research/00-MASTER-PLAN.md §6, confirmed on day 1.
 
 ## User
 - Answer in Thai; keep technical terms/code in English.

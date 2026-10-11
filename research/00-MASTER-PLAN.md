@@ -9,7 +9,7 @@
 | [01-training-datasets.md](01-training-datasets.md) | Dataset เมล็ดเสีย/ความสุก + data strategy | Vision |
 | [02-vision-pi5.md](02-vision-pi5.md) | กล้อง, light box, OpenCV, classifier บน Pi 5 CPU, โค้ดตั้งต้น | Vision |
 | [03-esp32-sensing.md](03-esp32-sensing.md) | เซ็นเซอร์ ~25 ตัว, pitfalls, core 3.x, MQTT, calibration, drills | ESP32 |
-| [04-competition-intel.md](04-competition-intel.md) | รูปแบบการแข่ง, หมวดคะแนน, ตารางคาดการณ์, คำถามถามผู้จัด | **ทุกคน** |
+| [04-competition-intel.md](04-competition-intel.md) | รูปแบบการแข่ง, หมวดคะแนน, ตารางคาดการณ์, สิ่งที่ต้องยืนยันวันงาน | **ทุกคน** |
 | [05-coffee-domain.md](05-coffee-domain.md) | มกษ. 5700, ICE/ICO, ความชื้น/รา, ราคา, EUDR, สูตรเกรด/ราคา | Service, SLM/Pitch |
 | [06-service-layer-slm.md](06-service-layer-slm.md) | Mosquitto, FastAPI+SQLite, Streamlit, PDF ไทย, Ollama, offline | Service, Dashboard, SLM |
 | [../contracts/CONTRACT.md](../contracts/CONTRACT.md) | Topic + JSON schema กลางของทีม | **ทุกคน** |
@@ -31,13 +31,13 @@
 | B | **Vision** | light box, dataset, OpenCV, classifier, Pi image | ESP32 |
 | C | **Backend / Integration** | Mosquitto, ingest, DB, grading/pricing/matching, contract | Dashboard |
 | D | **Dashboard / Market** | Streamlit/เว็บ, passport+QR, PDF, หน้า market | Backend |
-| E | **SLM + PM + Pitch (หัวหน้า)** | Ollama, prompts, domain กาแฟ, Trello, pitch deck, ถามผู้จัด | ทุกสาย (ภาพรวม) |
+| E | **SLM + PM + Pitch (หัวหน้า)** | Ollama, prompts, domain กาแฟ, Trello, pitch deck, ตาราง Assumptions (§6) + ยืนยันวันงาน | ทุกสาย (ภาพรวม) |
 
 ## 4. แผนรายสัปดาห์
 ### W1 (10–17 ต.ค.) — ท่อครบเส้น + สิ่งที่ต้องทำในโลกจริง
 - [x] Contract v1 + simulator + monitor + tests (เสร็จแล้ว)
-- [ ] **E**: ส่งคำถามถึงผู้จัด (04 §6) — โดยเฉพาะ: กล้องใครเตรียม, **ใช้ AI coding assistant/cloud LLM ระหว่างแข่งได้ไหม**, ผู้จัดตั้ง broker ให้หรือไม่, เซ็นเซอร์รุ่นอะไร, ใช้ SLM รุ่นอื่นได้ไหม
-- [ ] **B**: ส่งอีเมลขอ dataset (AL-ViT: มหิดล/มจธ.; MFU: sujitra.arw@mfu.ac.th), สั่งซื้อเมล็ดโรบัสต้าดิบชุมพร 1–2 kg (ขอแบบมีเมล็ดเสีย/ตกเกรด), สั่ง Camera Module 3 + ไฟ LED CRI≥90
+- [ ] **E**: ทีมอ่านตาราง Assumptions & Contingency (§6) ร่วมกัน — ตกลงว่าแต่ละเรื่องเตรียม "แผนหลัก + แผนสำรอง" อะไร (ไม่มีการติดต่อผู้จัดล่วงหน้า)
+- [ ] **B**: โหลด dataset สาธารณะ (01), สั่งซื้อเมล็ดโรบัสต้าดิบชุมพร 1–2 kg (ขอแบบมีเมล็ดเสีย/ตกเกรด), สั่ง Camera Module 3 + ไฟ LED CRI≥90 (ออปชัน: อีเมลขอ dataset จากผู้วิจัย AL-ViT/MFU — ไม่ใช่ผู้จัด)
 - [ ] **A**: ESP32 จริง → Mosquitto ตาม contract (แทน sim_esp32), LWT + reconnect
 - [ ] **C**: FastAPI + SQLite ingest จาก MQTT (ใช้ sim ทดสอบ)
 - [ ] **D**: Streamlit dashboard อ่าน DB/MQTT แสดง live
@@ -74,15 +74,33 @@
 - **DoD**: เปิดเครื่องจากศูนย์ → ระบบพร้อม demo ภายใน 15 นาที โดยไม่มีอินเทอร์เน็ต
 
 ## 5. สิ่งที่ต้องทำในโลกจริง (Claude ทำแทนไม่ได้)
-- [ ] ถามผู้จัด (04 §6) — **สำคัญสุด: ใช้ AI assistant/cloud LLM ระหว่างแข่งได้ไหม**
-- [ ] อีเมลขอ dataset AL-ViT และ MFU
-- [ ] ซื้อเมล็ดโรบัสต้าดิบชุมพร (มีเมล็ดเสียปน), Camera Module 3, ไฟ LED CRI≥90, gray card, Pi 5 active cooler + PSU 27W, ESP32 สำรอง ≥2
+> **ไม่มีการติดต่อ/ถามผู้จัดล่วงหน้า** — ทุกเรื่องที่ไม่รู้ใช้วิธี "คาดการณ์ + เตรียมแผนสำรอง" (§6) แล้วยืนยันจริงในวันงาน (§6.1)
+- [ ] ซื้อเมล็ดโรบัสต้าดิบชุมพร (มีเมล็ดเสียปน), Camera Module 3 + USB webcam สำรอง, ไฟ LED CRI≥90, gray card, Pi 5 active cooler + PSU 27W, ESP32-S3 สำรอง ≥2 + ESP32 DevKit รุ่นคลาสสิก 1–2
 - [ ] ตรวจสเปกโน้ตบุ๊กทุกเครื่อง (อย่างน้อย 2 เครื่องรัน SLM ได้)
+- [ ] (ออปชัน) อีเมลขอ dataset จากผู้วิจัย AL-ViT / MFU
 
-## 6. ยังไม่รู้ / ต้องยืนยัน
-- เซ็นเซอร์ที่ผู้จัดให้, ใครเตรียมกล้อง, broker ของใคร, starter code ผู้จัด
+## 6. Assumptions & Contingency (สิ่งที่ไม่รู้ → คาดการณ์ → เตรียมรับทั้งสองทาง)
+| # | ไม่รู้ว่า… | คาดการณ์ (แผนหลัก) | ถ้าไม่ใช่ (แผนสำรองที่ต้องเตรียมไว้) |
+|---|---|---|---|
+| 1 | **ใช้ AI coding assistant / cloud LLM ระหว่างแข่งได้ไหม** | ไม่แน่นอน → ถือว่า **อาจห้าม** | ทุกคนต้องเข้าใจโค้ดสายตัวเองจนแก้เองได้; cheat sheet + research/ อ่านออฟไลน์; ซ้อม mock rally แบบไม่ใช้ AI อย่างน้อย 1 รอบ (ถ้าอนุญาต → CLAUDE.md ช่วยเร่งงาน) |
+| 2 | เซ็นเซอร์ที่ผู้จัดให้ | ความชื้นเมล็ด (analog), temp/RH (I2C/DHT), อาจมี load cell | drills เซ็นเซอร์ ~25 ตัว (03); contract `readings` เปิดรับ key ใหม่; firmware ตั้งขาไว้บนสุดไฟล์ |
+| 3 | กล้อง Vision ใครเตรียม | ทีมเตรียมเอง | พก Camera Module 3 + USB webcam; โค้ดรองรับทั้ง Picamera2 และ OpenCV `VideoCapture` |
+| 4 | Broker / topic / schema ของผู้จัด | ทีมตั้ง Mosquitto เอง | ถ้าผู้จัดกำหนด topic/JSON เอง → topic ทั้งหมดอยู่ใน `topgun/contract.py` ที่เดียว แก้ได้เร็ว; เตรียม "adapter" แปลง payload ของเรา ↔ ของผู้จัด |
+| 5 | Starter code ผู้จัด (ปี 2023: FastAPI+MongoDB+MQTT+Docker) | อาจมี | ฝึก MongoDB + Docker Compose พื้นฐานด้วย; โมดูล grading/pricing/matching เขียนเป็น pure Python ย้ายไป stack ไหนก็ได้ |
+| 6 | บังคับ SLM รุ่นไหน | `qwen2.5:1.5b` | prompt ทุกตัวต้องผ่านบน qwen2.5:1.5b ก่อน; Typhoon/qwen3 เป็นทางเลือกเมื่อเปิดให้เลือก |
+| 7 | ผู้จัดแจก dataset หน้างานไหม | อาจแจก | ซ้อม pipeline "โฟลเดอร์ภาพ → train → NCNN บน Pi" ให้เสร็จ ≤ 1 ชม.; มีโมเดลที่ train ไว้แล้วเป็นสำรอง |
+| 8 | อินเทอร์เน็ตในงาน | ไม่มี/ช้า | offline pack ครบ (W5) + router ของทีม |
+| 9 | Vision ต้องรันบน Pi หรือใช้ GPU โน้ตบุ๊กได้ | ต้องรันบน Pi (ตามผังระบบ) | ไม่ต้องเตรียมเพิ่ม — train บนโน้ตบุ๊กได้อยู่แล้ว |
+| 10 | เครื่องมืออื่นที่เคยใช้ (MATLAB/Simulink ปี 2023–25) | อาจมี workshop | ทำความรู้จักพื้นฐาน 1–2 ชม. (ออปชัน) |
+| 11 | รูปแบบ pitch (เวลา/ภาษา/ผู้ฟัง) | ~5 นาที ภาษาไทย ขายแนวธุรกิจ | เตรียม deck 3 นาที + 5 นาที, demo สด + วิดีโอสำรอง |
+| 12 | ชนิดเซ็นเซอร์ความชื้น | capacitive (analog) | calibration ทั้งแบบ capacitive และแบบน้ำหนัก (load cell) |
+
+### 6.1 Day-1 checklist (ยืนยันในวันงาน ตอนลงทะเบียน/workshop แรก)
+ทุกข้อในตาราง §6 → จดคำตอบจริง → อัปเดต Decision Log (§7) แล้วเลือกแผนหลัก/สำรองทันที
+
+### 6.2 ยังไม่รู้ทางเทคนิค (ต้องวัด/จูนเอง)
 - เกณฑ์สี Lab สำหรับเมล็ดดำ/เปรี้ยว/ซีด (ยังไม่มีงานวิจัย → ต้องจูนกับเมล็ดจริง)
-- ความเร็วจริงของ classifier บน Pi 5 และ SLM บนโน้ตบุ๊กของทีม (ต้องวัดเอง)
+- ความเร็วจริงของ classifier บน Pi 5 และ SLM บนโน้ตบุ๊กของทีม
 - ISO 6673 ยังใช้อยู่หรือถูกแทนแล้ว, ตาราง TCVN 4193, GI โรบัสต้าชุมพร (ที่พบคือ ถ้ำสิงห์ / เขาทะลุ)
 
 ## 7. Decision Log (แก้ได้ — จดเหตุผลทุกครั้ง)
@@ -92,3 +110,5 @@
 | 2026-10-10 | Vision = OpenCV crop + classifier เล็ก (ไม่ใช้ detector ทั้งถาด) | เมล็ดเล็กเกินที่ 640px; เร็วกว่าบน CPU |
 | 2026-10-10 | Backend = FastAPI + SQLite, Dashboard = Streamlit | เร็วสุดในเวลาจำกัด, ไม่ต้องพึ่ง Docker |
 | 2026-10-10 | SLM แค่ "เล่าตัวเลข" ไม่คำนวณ | โมเดล 1.5B คิดเลข/แต่งข้อมูลผิดบ่อย |
+| 2026-10-11 | บอร์ดหลัก ESP32-S3 N16R8, สำรอง ESP32 DevKit คลาสสิก | มีอยู่แล้ว, PSRAM สำหรับ offline buffer; คลาสสิกเผื่อโค้ดตัวอย่างผู้จัด |
+| 2026-10-11 | ไม่ติดต่อผู้จัดล่วงหน้า → ใช้ตาราง Assumptions & Contingency (§6) | ข้อจำกัดของทีม; เตรียมรับทั้งสองทาง แล้วยืนยันวันงาน |
